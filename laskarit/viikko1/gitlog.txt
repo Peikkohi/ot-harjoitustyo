@@ -23,7 +23,7 @@ commit a4cf97f9d01715b3daf5788d8c86cacac556561c
 Author: Peikkohi <peik.kalliokoski@helsinki.fi>
 Date:   Mon Mar 20 13:51:43 2023 +0200
 
-    Change eka.txt, kolmas.txt
+    C: hange eka.txt, kolmas.txt
 
  eka.txt    | 25 ++++++++++++-------------
  kolmas.txt |  2 +-
