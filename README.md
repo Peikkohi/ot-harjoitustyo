@@ -1,5 +1,5 @@
 # Ohjelmistotekniikan harjoitustyöt
-Repo *sisältää* harjoitustöiden **vastauksia**
+Repo *sisältää* harjoitustöiden **vastauksia**.
 ## Tehtäviä
 ### Viikko 1
 * [gitlog](laskarit/viikko1/gitlog.txt)
