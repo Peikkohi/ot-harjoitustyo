@@ -1,5 +1,5 @@
 # Ohjelmistotekniikan harjoitustyöt
-Visuaalinen rajapinta nettisivujen kaavimiseen.
+Muotojen animointityökalu (inbetweening/tweening)
 ## Tehtäviä
 ### Viikko 1
 * [gitlog](laskarit/viikko1/gitlog.txt)
