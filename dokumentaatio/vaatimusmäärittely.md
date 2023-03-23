@@ -1,5 +1,11 @@
 # Vaatimusmäärittely
+## Sovelluksen tarkoitus
+Sovellus on tarkoitettu muotojen animoimiseen määrittelemällä kaava, jolla muotovaihtaa paikkaa kahden sijainnin välillä.
+
+## Toiminnallisuudet
 - [ ] Näkymä muodon animaation katsomiselle
-- [ ] Kentta kahden keyframe:n välisen muutoksen määrittämiselle
+- [ ] Mahdollisuus näkyvän näkymän vaihtamiseen
+- [ ] Kahden näkymän välisen muodonmuutoksen määrittäminen
+- [ ] Animaation "toisto" eli animaation läpikäyminen
 
 ![näkymäkaavio](näkymäkaavio.png)

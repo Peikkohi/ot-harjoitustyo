@@ -7,3 +7,4 @@ Muotojen animointityökalu (inbetweening/tweening)
 ### Viikko 2
 ![testikattavuusraportti](laskarit/viikko2/testikattavuusraportti.png)
 [vaatimusmäärittely](dokumentaatio/vaatimusmäärittely.md)
+[työaikakirjanpito](dokumentaatio/työaikakirjanpito.txt)
