@@ -6,4 +6,4 @@ Muotojen animointityökalu (inbetweening/tweening)
 * [komentorivi](laskarit/viikko1/komentorivi.txt)
 ### Viikko 2
 ![testikattavuusraportti](laskarit/viikko2/testikattavuusraportti.png)
-[vaatimusmäärittely](dokumentaatio/vaarimusmäärittely.md)
+[vaatimusmäärittely](dokumentaatio/vaatimusmäärittely.md)
