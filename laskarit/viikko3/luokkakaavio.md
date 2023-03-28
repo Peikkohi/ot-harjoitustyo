@@ -14,13 +14,13 @@ Ruutu <|-- Yhteismaa
 Ruutu <|-- Asema
 Ruutu <|-- Laitos
 Ruutu <|-- Katu
-Katu "1" -- "1" Nimi
 Monopoli "1" -- "1" Aloitusruutu
 Monopoli "1" -- "1" Vankila
 Ruutu "1" -- "1" Toiminto
 Kortti "1" -- "1" Toiminto
 Sattuma "1" -- "*" Kortti
 Yhteismaa "1" -- "*" Kortti
+Katu "1" -- "1" Nimi
 Katu "1" .. "4" Talo
 Katu "1" .. "1" Hotelli
 Pelaaja "1" -- "*" Katu
