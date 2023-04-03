@@ -2,8 +2,8 @@
 sequenceDiagram
 	participant Ma as Main
 	participant M as Machine
-	participant F as FuelTank
 	participant E as Engine
+	participant F as FuelTank
 
 	Ma->>M: Machine()
 	M->>F: FuelTank()
