@@ -6,5 +6,5 @@ Muotojen animointityökalu (inbetweening/tweening)
 * [komentorivi](laskarit/viikko1/komentorivi.txt)
 ### Viikko 2
 ![testikattavuusraportti](laskarit/viikko2/testikattavuusraportti.png)
-[vaatimusmäärittely](dokumentaatio/vaatimusmäärittely.md)
-[työaikakirjanpito](dokumentaatio/työaikakirjanpito.txt)
+[vaatimusmäärittely](tween-animation-app/dokumentaatio/vaatimusmäärittely.md)
+[työaikakirjanpito](tween-animation-app/dokumentaatio/työaikakirjanpito.txt)
