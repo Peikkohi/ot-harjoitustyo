@@ -31,12 +31,12 @@ sequenceDiagram
 	deactivate Laitehallinto
 	Main->>Luukku: Kioski()
 	activate Luukku
-	deactivate Luukku
 	Main->>Luukku: osta_matkakortti("Kalle")
 	activate Luukku
 	Luukku->>Kortti: Matkakortti("Kalle")
 	activate Kortti
 	deactivate Kortti
+	deactivate Luukku
 	Main->>Rautatietori: lataa_arvoa(kallen_kortti, 3)
 	activate Rautatietori
 	Rautatietori->>Kortti: kasvata_arvoa(3)
