@@ -1,12 +1,12 @@
 ```mermaid
 sequenceDiagram
 	participant Main as main
-	participant Laitehallinto as laitehallinto
-	participant Rautatietori as rautatietori
-	participant Ratikka as ratikka6
 	participant Bussi as bussi244
+	participant Ratikka as ratikka6
+	participant Rautatietori as rautatietori
 	participant Kortti as kallen_kortti
 	participant Luukku as lippu_luukku
+	participant Laitehallinto as laitehallinto
 
 	Main->>Laitehallinto: HKLLaitehallinto()
 	activate Laitehallinto
@@ -31,6 +31,7 @@ sequenceDiagram
 	deactivate Laitehallinto
 	Main->>Luukku: Kioski()
 	activate Luukku
+	deactivate Luukku
 	Main->>Luukku: osta_matkakortti("Kalle")
 	activate Luukku
 	Luukku->>Kortti: Matkakortti("Kalle")
