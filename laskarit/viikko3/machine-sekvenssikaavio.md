@@ -9,15 +9,15 @@ sequenceDiagram
 	activate M
 	M->>F: FuelTank()
 	activate F
-	F-->>M:
+	F-->>M: A
 	deactivate F
 	M->>F: fill(40)
 	activate F
-	F-->>M:
+	F-->>M: A
 	deactivate F
 	M->>E: Engine(fueltank)
 	activate E
-	E-->>Ma:
+	E-->>Ma: A
 	deactivate E
 	deactivate M
 	Ma->>M: drive()
@@ -26,7 +26,7 @@ sequenceDiagram
 	activate E
 	E->>F: consume(5)
 	activate F
-	F-->>M:
+	F-->>M: A
 	deactivate F
 	deactivate E
 	M->>E: is_running()
@@ -41,7 +41,7 @@ sequenceDiagram
 	activate E
 	E->>F: consume(10)
 	activate F
-	F-->>Ma:
+	F-->>Ma: A
 	deactivate F
 	deactivate E
 	deactivate M
