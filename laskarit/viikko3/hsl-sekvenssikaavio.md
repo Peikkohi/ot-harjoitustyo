@@ -11,9 +11,9 @@ sequenceDiagram
 	Main->>Laitehallinto: HKLLaitehallinto()
 	activate Laitehallinto
 	deactivate Laitehallinto
-	Main->>Rautatietotori: Lataajalaite()
-	activate Rautatietotori
-	deactivate Rautatietotori
+	Main->>Rautatietori: Lataajalaite()
+	activate Rautatietori
+	deactivate Rautatietori
 	Main->>Ratikka: Lukijalaite()
 	activate Ratikka
 	deactivate Ratikka
@@ -37,12 +37,12 @@ sequenceDiagram
 	Luukku->>Kortti: Matkakortti("Kalle")
 	activate Kortti
 	deactivate Kortti
-	Main->>Rautatietotori: lataa_arvoa(kallen_kortti, 3)
-	activate Rautatietotori
-	Rautatietotori->>Kortti: kasvata_arvoa(3)
+	Main->>Rautatietori: lataa_arvoa(kallen_kortti, 3)
+	activate Rautatietori
+	Rautatietori->>Kortti: kasvata_arvoa(3)
 	activate Kortti
 	deactivate Kortti
-	deactivate Rautatietotori
+	deactivate Rautatietori
 	Main->>Ratikka: osta_lippu(kallen_kortti, 0)
 	activate Ratikka
 	Ratikka->>Kortti: arvo
