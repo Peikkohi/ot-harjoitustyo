@@ -1,10 +1,16 @@
 # Ohjelmistotekniikan harjoitustyö
 Muotojen animointityökalu (inbetweening/tweening)
-## Tehtäväpalautukset
-### Viikko 1
-* [gitlog](laskarit/viikko1/gitlog.txt)
-* [komentorivi](laskarit/viikko1/komentorivi.txt)
-### Viikko 2
-![testikattavuusraportti](laskarit/viikko2/testikattavuusraportti.png)
-[vaatimusmäärittely](tween-animation-app/dokumentaatio/vaatimusmäärittely.md)
-[työaikakirjanpito](tween-animation-app/dokumentaatio/työaikakirjanpito.txt)
+
+## Dokumentaatio
+* [Viikoittaiset muutokset](tween-animation-app/dokumentaatio/changelog.md)
+
+## Asennus
+1. Asenna riippuvuudet: `poetry install`
+2. Käynnistä sovellus: `poetry run invoke start`
+
+## Testaus
+Suorita: `poetry run invoke test`
+
+## Testikattavuus
+Testikattavuusraporttihakemisto `htmlcov` voi saada komennolla:
+`poetry run invoke coverage_report`
