@@ -1,25 +1,35 @@
+from collections import namedtuple
 
-def lerp(n, m, t):
-    return n * (1 - t) + m * t
+Pos = namedtuple('Pos', ['x', 'y'])
+
+
+def mix(start: float, end: float, time: float):
+    return start * (1 - time) + end * time
+
 
 class Animator():
-    def __init__(self, pos):
+    def __init__(self, pos: Pos):
         self.frames = [pos]
         self.tweens = []
         self.time = 0
 
-    def add_frame(self, frame, tween=lerp):
+    def add_frame(self, frame: Pos, tween=mix):
         self.frames.append(frame)
         self.tweens.append(tween)
 
     def animate(self):
         self.time += 0.05
         self.time %= len(self.tweens)
-        i = int(self.time)
-        x1, y1 = self.frames[i]
-        x2, y2 = self.frames[i + 1]
-        return self.tweens[i](x1, x2, self.time - i), \
-                self.tweens[i](y1, y2, self.time - i)
+        index = int(self.time)
+        start = self.frames[index]
+        end = self.frames[index + 1]
+        tween = self.tweens[index]
+        time = self.time - index
+        return Pos(
+            x=tween(start.x, end.x, time),
+            y=tween(start.y, end.y, time),
+        )
+
 
 class AnimationHandler():
     def __init__(self, animator, moveto, after):
@@ -34,7 +44,7 @@ class AnimationHandler():
             self.update()
 
     def update(self):
-        x, y = self.animator.animate()
-        self.moveto(x, y)
+        pos = self.animator.animate()
+        self.moveto(pos.x, pos.y)
         if self.play:
             self.after(10, self.update)

@@ -1,11 +1,12 @@
 import unittest
 
-from animator import AnimationHandler, Animator
+from animator import AnimationHandler, Animator, Pos
+
 
 class AnimationHandler_test(unittest.TestCase):
     def setUp(self):
-        animator = Animator((0, 0))
-        animator.add_frame((0, 0))
+        animator = Animator(Pos(x=0, y=0))
+        animator.add_frame(Pos(x=0, y=0))
         self.handler = AnimationHandler(animator, lambda x, y: None, None)
         self.failing_branch = True
 
