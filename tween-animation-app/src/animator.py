@@ -3,48 +3,29 @@ from collections import namedtuple
 Pos = namedtuple('Pos', ['x', 'y'])
 
 
-def mix(start: float, end: float, time: float):
-    return start * (1 - time) + end * time
+def scheduled(scheduler, interval):
+    def wrapper(call):
+        def wrap(*args, **kwargs):
+            scheduler.after(interval, lambda: call(*args, **kwargs))
+        return wrap
+    return wrapper
 
 
-class Animator():
-    def __init__(self, pos: Pos):
-        self.frames = [pos]
-        self.tweens = []
-        self.time = 0
+def animation(frames):
+    def frame(time):
+        index = int(time)
+        phase = time - index
+        start, end = frames[index], frames[index + 1]
 
-    def add_frame(self, frame: Pos, tween=mix):
-        self.frames.append(frame)
-        self.tweens.append(tween)
-
-    def animate(self):
-        self.time += 0.05
-        self.time %= len(self.tweens)
-        index = int(self.time)
-        start = self.frames[index]
-        end = self.frames[index + 1]
-        tween = self.tweens[index]
-        time = self.time - index
-        return Pos(
-            x=tween(start.x, end.x, time),
-            y=tween(start.y, end.y, time),
-        )
+        def lerp(start, end):
+            return start * (1 - phase) + end * phase
+        return Pos(x=lerp(start.x, end.x), y=lerp(start.y, end.y))
+    return frame
 
 
-class AnimationHandler():
-    def __init__(self, animator, moveto, after):
-        self.play = False
-        self.animator = animator
-        self.moveto = moveto
-        self.after = after
+def drawable(canvas, *args, **kwargs):
+    obj = canvas.create_rectangle(*args, **kwargs)
 
-    def toggle(self):
-        self.play = not self.play
-        if self.play:
-            self.update()
-
-    def update(self):
-        pos = self.animator.animate()
-        self.moveto(pos.x, pos.y)
-        if self.play:
-            self.after(10, self.update)
+    def move_to(pos):
+        canvas.moveto(obj, pos.x, pos.y)
+    return move_to
