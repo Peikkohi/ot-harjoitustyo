@@ -2,6 +2,7 @@ import unittest
 
 from animator import Animator
 
+
 class DummyManager:
     def __init__(self):
         self.args = dict()
@@ -12,6 +13,7 @@ class DummyManager:
 
     def create_method(self, name):
         self.args[name] = []
+
         def method(*args):
             self.args[name].append(args)
         return method
@@ -73,7 +75,6 @@ class TestAnimator(unittest.TestCase):
         position = self.manager.args['position']
         schedule = self.manager.args['schedule']
         self.assertTrue(self.animator.run)
-        #self.assertIs(schedule[0][0], self.animator.animate)
+        # self.assertIs(schedule[0][0], self.animator.animate)
         self.assertAlmostEqual(position[0][0][0], 0)
         self.assertAlmostEqual(position[0][0][1], 0)
-

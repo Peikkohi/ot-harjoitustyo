@@ -2,6 +2,7 @@ import unittest
 
 from animator import lerp, ease_in, ease_out
 
+
 class TestTweens(unittest.TestCase):
     def test_lerp(self):
         n = 0
@@ -19,5 +20,6 @@ class TestTweens(unittest.TestCase):
         n = 0
         while n < 1:
             inverse = 1 - n
-            self.assertAlmostEqual(ease_out(0, 1, n), 1 - inverse * inverse * inverse)
+            self.assertAlmostEqual(
+                ease_out(0, 1, n), 1 - inverse * inverse * inverse)
             n += 0.1
