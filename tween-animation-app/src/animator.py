@@ -1,31 +1,64 @@
-from collections import namedtuple
 
-Pos = namedtuple('Pos', ['x', 'y'])
-
-
-def scheduled(scheduler, interval):
-    def wrapper(call):
-        def wrap(*args, **kwargs):
-            scheduler.after(interval, lambda: call(*args, **kwargs))
-        return wrap
-    return wrapper
+def lerp(start, end, phase):
+    return start * (1 - phase) + end * phase
 
 
-def animation(frames):
-    def frame(time):
+def ease_in(start, end, phase):
+    return lerp(start, end, phase * phase * phase)
+
+
+def ease_out(start, end, phase):
+    inverse = 1 - phase
+    return lerp(start, end, 1 - inverse * inverse * inverse)
+
+
+class Animator:
+    def __init__(self, manager):
+        self.manager = manager
+        self.frames = []
+        self.tweens = []
+        self.run = False
+        self.time = 0
+
+    def frame(self, time):
+        if time >= len(self.frames) - 1:
+            self.manager.position(self.frames[-1])
+            return False
         index = int(time)
         phase = time - index
-        start, end = frames[index], frames[index + 1]
+        start_x, start_y = self.frames[index]
+        end_x, end_y = self.frames[index + 1]
+        tween = self.tweens[index]
+        self.manager.position(
+            (tween(start_x, end_x, phase), tween(start_y, end_y, phase)))
+        return True
 
-        def lerp(start, end):
-            return start * (1 - phase) + end * phase
-        return Pos(x=lerp(start.x, end.x), y=lerp(start.y, end.y))
-    return frame
+    def animate(self):
+        self.time += 0.01
+        success = self.frame(self.time)
+        if not success:
+            self.time = 0
+            self.run = False
 
+        if self.run:
+            self.manager.schedule(self.animate)
 
-def drawable(canvas, *args, **kwargs):
-    obj = canvas.create_rectangle(*args, **kwargs)
+    def play(self):
+        self.run = not self.run
+        if self.run:
+            self.animate()
 
-    def move_to(pos):
-        canvas.moveto(obj, pos.x, pos.y)
-    return move_to
+    def show(self, index):
+        self.run = False
+        self.frame(index)
+
+    def new(self):
+        if len(self.frames) > 0:
+            self.tweens.append(lerp)
+
+            self.manager.setting(self, self.tweens,
+                                 [lerp, ease_in, ease_out])
+
+        self.frames.append([0, 0])
+
+        self.manager.setting(self, self.frames)
