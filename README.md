@@ -3,6 +3,7 @@ Muotojen animointityökalu (inbetweening/tweening)
 
 ## Dokumentaatio
 * [Viikoittaiset muutokset](tween-animation-app/dokumentaatio/changelog.md)
+* [Arkkitehtuurikaavio](tween-animation-app/dokumentaatio/arkkitehtuuri.md)
 
 ## Asennus
 1. Asenna riippuvuudet: `poetry install`
