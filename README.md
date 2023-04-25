@@ -1,5 +1,7 @@
 # Ohjelmistotekniikan harjoitustyö
-Muotojen animointityökalu, jolla ruudun sijaintien välille saa määriteltyä liikeratoja. (inbetweening/tweening)
+Muotojen animointityökalu, jolla näytön sijaintien välille saa määriteltyä liikeratoja. (inbetweening/tweening) Lisää muodolle uusia kohteita, valitse kohde, vaihda sivun vivuista kohteen sijaintia. Kun olet lisännyt useemman kohteen laita animaatio käyntiin!
+
+
 
 ## Dokumentaatio
 * [Muutosten kirjanpito](tween-animation-app/dokumentaatio/changelog.md)
@@ -8,8 +10,10 @@ Muotojen animointityökalu, jolla ruudun sijaintien välille saa määriteltyä 
 * [Työaikakirjanpito](tween-animation-app/dokumentaatio/työaikakirjanpito.txt)
 
 ## Asennus
-1. Asenna riippuvuudet: `poetry install`
-2. Käynnistä sovellus: `poetry run invoke start`
+0. Lataa [julkaisu](https://github.com/Peikkohi/tween-animation-app/releases/tag/viikko5)
+1. Mene alikansioon "tween-animation-app" (`cd tween-animation-app`)
+2. Asenna riippuvuudet: `poetry install`
+3. Käynnistä sovellus: `poetry run invoke start`
 
 ## Testaus
 Suorita: `poetry run invoke test`
