@@ -36,4 +36,5 @@ sequenceDiagram
 	deactivate Animate
 	Mainloop->>Animate: animator.animate()
 	activate Animate
+	deactivate Animate
 ´´´
