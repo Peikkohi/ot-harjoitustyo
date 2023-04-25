@@ -3,7 +3,7 @@ Muotojen animointityökalu, jolla ruudun sijaintien välille saa määriteltyä 
 
 ## Dokumentaatio
 * [Muutosten kirjanpito](tween-animation-app/dokumentaatio/changelog.md)
-* [Vaatimusmäärittely] (tween-animation-app/dokumentaatio/vaatimusmäärittely.md)
+* [Vaatimusmäärittely](tween-animation-app/dokumentaatio/vaatimusmäärittely.md)
 * [Arkkitehtuurikaavio](tween-animation-app/dokumentaatio/arkkitehtuuri.md)
 * [Työaikakirjanpito](tween-animaiton-app/dokumentaatio/työaikakirjapito.txt)
 
