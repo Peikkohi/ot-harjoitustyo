@@ -6,6 +6,7 @@ Sovelluksella käyttäjän on mahdollista luoda animaatioita muodolle määritte
 - [x] Sijaintien välille voi määritellä siirtymisiä
 - [x] Animaation katsomisen voi toistaa
 - [x] Animaatiossa voi siirtä katsomaan haluamaansa kohtaan ja muokkaamaan sitä
+- [x] Palkki, jolla voi siirtyä animaation kulun läpi (Lisätty 25.4.)
 
 ## Käyttöliittymäluonnos
 ![näkymäkaavio](näkymäkaavio.png)

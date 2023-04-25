@@ -82,6 +82,9 @@ if __name__ == '__main__':
     settings_frame = tk.Frame(render_frame)
     settings_frame.pack(side='left', fill='both')
 
+    timeline_scale = tk.Scale(root, orient='horizontal', showvalue=False)
+    timeline_scale.pack(side='top', fill='x')
+
     toolbar_frame = tk.Frame(root)
     toolbar_frame.pack(side='top', fill='x')
 
@@ -106,5 +109,9 @@ if __name__ == '__main__':
 
     new_button['command'] = animator.new
     play_button['command'] = animator.play
+
+    @lambda f: timeline_scale.config(command=f)
+    def timeline_callback(value):
+        animator.show(float(value) / 100 * animator.max_time())
 
     root.mainloop()

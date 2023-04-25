@@ -20,8 +20,11 @@ class Animator:
         self.run = False
         self.time = 0
 
+    def max_time(self):
+        return len(self.frames) - 1
+
     def frame(self, time):
-        if time >= len(self.frames) - 1:
+        if time >= self.max_time():
             self.manager.position(self.frames[-1])
             return False
         index = int(time)
@@ -48,9 +51,9 @@ class Animator:
         if self.run:
             self.animate()
 
-    def show(self, index):
+    def show(self, time):
         self.run = False
-        self.frame(index)
+        self.frame(time)
 
     def new(self):
         if len(self.frames) > 0:

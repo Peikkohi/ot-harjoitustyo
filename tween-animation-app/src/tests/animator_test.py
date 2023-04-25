@@ -35,6 +35,7 @@ class TestAnimator(unittest.TestCase):
         self.animator.new()
         self.assertEqual(self.animator.frames, [[0, 0]])
         self.assertEqual(self.animator.tweens, [])
+        self.assertEqual(self.animator.max_time(), 0)
         setting = self.manager.args['setting']
         self.assertEqual(len(setting), 1)
         self.assertIs(setting[0][0], self.animator)
@@ -43,6 +44,7 @@ class TestAnimator(unittest.TestCase):
     def test_new_twice(self):
         self.animator.new()
         self.animator.new()
+        self.assertEqual(self.animator.max_time(), 1)
         self.assertEqual(self.animator.tweens[0].__name__, 'lerp')
         setting = self.manager.args['setting']
         self.assertEqual(len(setting), 3)
