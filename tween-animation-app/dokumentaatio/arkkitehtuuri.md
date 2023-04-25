@@ -23,16 +23,6 @@ sequenceDiagram
 	activate Play
 	Play->>Animate: animator.animate()
 	activate Animate
-	Animate->>Frame: animator.frame(animator.time)
-	activate Frame
-	Frame->>Position: manager.position(...)
-	activate Position
-	deactivate Position
-	deactivate Frame
-	Frame-->>Animate: True
-	Animate->>Schedule: manager.schedule(animator.animate)
-	activate Schedule
-	deactivate Schedule
 	deactivate Animate
 	Mainloop->>Animate: animator.animate()
 	activate Animate
