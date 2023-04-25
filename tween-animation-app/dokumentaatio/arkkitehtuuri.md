@@ -27,6 +27,6 @@ sequenceDiagram
 	activate Schedule
 	deactivate Schedule
 	deactivate Animate
-	Mainloop->>Animate
+	Mainloop->>Animate: animator.animate()
 	activate Animate
 ´´´
