@@ -12,21 +12,21 @@ Animator "1" -- "1" Manager
 
 ```mermaid
 sequenceDiagram
-mainloop->>play: animator.play()
-activate play
-play->>animate: animator.animate()
-activate animate
-animate->>frame: animator.frame(animator.time)
-activate frame
-frame->>position: manager.position(...)
-activate position
-deactivate position
-deactivate frame
-frame-->>animate: True
-animate->>schedule: manager.schedule(animator.animate)
-activate schedule
-deactivate schedule
-deactivate animate
-mainloop->>animate
-activate animate
+Mainloop->>Play: animator.play()
+activate Play
+Play->>Animate: animator.animate()
+activate Animate
+Animate->>Frame: animator.frame(animator.time)
+activate Frame
+Frame->>Position: manager.position(...)
+activate Position
+deactivate Position
+deactivate Frame
+Frame-->>Animate: True
+Animate->>Schedule: manager.schedule(animator.animate)
+activate Schedule
+deactivate Schedule
+deactivate Animate
+Mainloop->>Animate
+activate Animate
 ´´´
