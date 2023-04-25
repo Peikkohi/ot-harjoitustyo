@@ -12,6 +12,13 @@ Animator "1" -- "1" Manager
 
 ```mermaid
 sequenceDiagram
+	participant Mainloop
+	participant Animate
+	participant Frame
+	participant Position
+	participant Schedule
+	participant Play
+
 	Mainloop->>Play: animator.play()
 	activate Play
 	Play->>Animate: animator.animate()
