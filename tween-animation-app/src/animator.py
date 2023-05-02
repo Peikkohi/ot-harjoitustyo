@@ -1,5 +1,6 @@
 
 class Position:
+    """Holds the position of a frame."""
     def __init__(self, index):
         self.index = index
         self.horizontal_position = 0
@@ -16,6 +17,7 @@ class Position:
 
 
 class Tween:
+    """Holds the transition of a animation."""
     @staticmethod
     def lerp(start, end, phase):
         return start * (1 - phase) + end * phase
@@ -46,6 +48,10 @@ class Tween:
 
 
 class Animation:
+    """Gives a position according to a time.
+
+    Animation is composed of position and the transition between those positions.
+    """
     def __init__(self):
         self.frames = []
         self.tweens = []
@@ -54,6 +60,14 @@ class Animation:
         return len(self.frames) - 1
 
     def frame(self, time):
+        """Returns the part of the animation, which time maps to.
+        
+        Args:
+            time: float between 0 and max_time
+
+        Returns:
+            calculated position of the animation
+        """
         if time >= self.max_time():
             return self.frames[-1], True
         index = int(time)
@@ -64,6 +78,12 @@ class Animation:
         return (tween(start_x, end_x, phase), tween(start_y, end_y, phase)), False
 
     def new(self):
+        """Add new frame to the animation.
+
+        Returns:
+            a position corresponding with the end of the frame
+            and transition, which is used to move to the new position
+        """
         position, tween = None, None
         if self.frames:
             tween = Tween(len(self.tweens))

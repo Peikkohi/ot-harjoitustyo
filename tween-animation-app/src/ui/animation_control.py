@@ -4,6 +4,8 @@ from animator import Animation
 
 
 class AnimationControl:
+    """Controls the movements of a drawable object.
+    """
     def __init__(self, manager):
         self.manager = manager
         self.animation = Animation()
@@ -25,11 +27,18 @@ class AnimationControl:
             self.manager.schedule(self.animate)
 
     def play(self):
+        """Toggles the animation between on/off.
+        """
         self.run = not self.run
         if self.run:
             self.animate()
 
     def show(self, time):
+        """Stop the animation to given timestamp.
+
+        Args:
+            time: float of the timestamp which gets shown
+        """
         self.run = False
         self.move(time)
 
@@ -40,4 +49,9 @@ class AnimationControl:
         self.manager.frame(self, position)
 
     def uniform_show(self, time):
+        """Stop the animation to given timestamp.
+
+        Args:
+            time: int prosent of the whole animation length
+        """
         self.show(time / 100 * self.animation.max_time())

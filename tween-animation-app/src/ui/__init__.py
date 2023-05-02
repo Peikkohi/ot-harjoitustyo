@@ -5,6 +5,8 @@ from ui.setting_factory import Manager
 
 
 def run_app():
+    """Opens an application window and start a application loop.
+    """
     root = tk.Tk()
 
     interactive_widgets = structure(root)
@@ -14,6 +16,16 @@ def run_app():
 
 
 def structure(root):
+    """Defines the structure of application window.
+
+    Populates the argument root, with render, setting and toolbar area.
+
+    Args:
+        root: tkinter widget where the widgets are to be populated
+
+    Returns:
+        Widgets, which are needed for the application interaction
+    """
     render_frame = tk.Frame(root)
     render_frame.pack(side='top', fill='x')
 
@@ -51,6 +63,11 @@ def structure(root):
 def interaction(new_button, play_button, timeline_scale,
                 settings_frame, timeline_frame,
                 canvas, drawable):
+    """Adds animation controlling interaction to widgets
+
+    Initializes animation control, which provides the widgets ability to
+    add new frames to the animation, control current sequence of animation.
+    """
     manager = Manager(
         settings_frame, timeline_frame,
         lambda update: canvas.after(17, update),
