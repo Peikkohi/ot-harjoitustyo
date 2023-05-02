@@ -11,3 +11,6 @@
 
 ### Viikko 5
 - Palkki, jolla voi siirtyä haluamaansa kohtaan animaatiota
+
+### Viikko 6
+- Koodin siivoamista
