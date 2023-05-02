@@ -1,7 +1,6 @@
 # This is an unnecessery file, which is only needed cause UI needed to be
 # separated to its own file
-from ui import App
+from ui import run_app
 
 if __name__ == '__main__':
-    App().mainloop()
-
+    run_app()
