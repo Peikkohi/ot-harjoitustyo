@@ -1,49 +1,42 @@
 import tkinter as tk
 
+from animation import Keyframe, Inbetween
 
 class SettingFactory:
-    def __init__(self, settings, timeline):
-        self.settings = settings
-        self.timeline = timeline
+    """A class which combines app logic with UI elements.
+    """
+    def __init__(self, widget):
+        self.__widget = widget
 
-    def frame(self, animation, position):
-        frame, button = self.setting(position, animation)
-        frame.config(text=f'Frame { position.index }')
-        button.config(text=position.index)
+    def change_shown(self, widget):
+        for children in self.__widget.slaves():
+            children.pack_forget()
+        widget.pack()
 
-        scale_x = tk.Scale(frame, to=800, orient='horizontal')
-        scale_x['command'] = lambda val: position.set_x(int(val))
-        scale_x.pack()
+    def for_keyframe(self, keyframe: Keyframe):
+        frame = tk.LabelFrame(self.__widget,
+                text=f'Frame { keyframe.timestamp }')
+        def scale(to):
+            scale = tk.Scale(frame, to=to, orient='horizontal')
+            scale.pack()
+            def wrapper(f):
+                scale['command'] = f
+            return wrapper
+        @scale(to=800)
+        def set_x(value):
+            keyframe.x = int(value)
+        @scale(to=600)
+        def set_y(value):
+            keyframe.y = int(value)
+        return frame
 
-        scale_y = tk.Scale(frame, to=600, orient='horizontal')
-        scale_y['command'] = lambda val: position.set_y(int(val))
-        scale_y.pack()
+    def for_inbetween(self, inbetween: Inbetween):
+        frame = tk.LabelFrame(self.__widget,
+                text=f'Tween { inbetween.timestamp }')
+        def change_to(option):
+            inbetween.current = option
+        optionmenu = tk.OptionMenu(frame, tk.Variable(),
+                *inbetween.options, command=change_to)
+        optionmenu.pack(expand=True, fill='x')
+        return frame
 
-    def tween(self, animation, tween):
-        frame, button = self.setting(tween, animation)
-        frame['text'] = f'Tween { tween.index }'
-        button['text'] = '...'
-        option_menu = tk.OptionMenu(frame, tk.Variable(),
-                                    *tween.options, command=tween.set_current)
-        option_menu.pack()
-
-    def setting(self, obj, animation):
-        frame = tk.LabelFrame(self.settings)
-        button = tk.Button(self.timeline)
-        button.pack(side='left')
-
-        @lambda f: button.config(command=f)
-        def switch():
-            for widget in self.settings.slaves():
-                widget.pack_forget()
-            frame.pack()
-            animation.show(obj.index)
-
-        return frame, button
-
-
-class Manager(SettingFactory):
-    def __init__(self, settings, timeline, schedule, position):
-        super().__init__(settings, timeline)
-        self.schedule = schedule
-        self.position = position

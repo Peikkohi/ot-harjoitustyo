@@ -1,16 +1,74 @@
 import tkinter as tk
 
-from ui.animation_control import AnimationControl
-from ui.setting_factory import Manager
+from animation import Animation
+from animation_player import AnimationPlayer
 
+from ui.animation_player_adapter import AnimationPlayerAdapter
+from ui.setting_factory import SettingFactory
+
+def new(widget, animation: Animation,
+        adapter: AnimationPlayerAdapter, factory: SettingFactory):
+    def button(text, call):
+        button = tk.Button(widget, text=text, command=call)
+        button.pack(side='left')
+        return button
+    def caller(widget, time):
+        def wrap():
+            factory.change_shown(widget)
+            adapter.show_position_of(time)
+        return wrap
+    def new():
+        keyframe, inbetween = animation.create_keyframe()
+        if inbetween is not None:
+            call = caller(factory.for_inbetween(inbetween),
+                    inbetween.timestamp)
+            button(text='...', call=call)
+        call = caller(factory.for_keyframe(keyframe), keyframe.timestamp)
+        button(text=str(keyframe.timestamp), call=call)
+    return new
 
 def run_app():
     """Opens an application window and start a application loop.
     """
     root = tk.Tk()
 
-    interactive_widgets = structure(root)
-    interaction(*interactive_widgets)
+    render_frame = tk.Frame(root)
+    render_frame.pack(side='top', fill='x')
+
+    canvas = tk.Canvas(render_frame, width=800, height=600, bg='white')
+    canvas.pack(side='left')
+
+    settings_frame = tk.Frame(render_frame)
+    settings_frame.pack(side='left', fill='both')
+
+    timeline_scale = tk.Scale(root, orient='horizontal', showvalue=False)
+    timeline_scale.pack(side='top', fill='x')
+
+    toolbar_frame = tk.Frame(root)
+    toolbar_frame.pack(side='top', fill='x')
+
+    select_frame = tk.Frame(toolbar_frame)
+    select_frame.pack(side='left', fill='x', expand=True)
+
+    chooser_frame = tk.Frame(select_frame)
+    chooser_frame.pack(side='left')
+
+    new_button = tk.Button(select_frame, text='new')
+    new_button.pack(side='left')
+
+    play_button = tk.Button(toolbar_frame, text='play')
+    play_button.pack(side='right', fill='x')
+
+    animation = Animation()
+    player = AnimationPlayer(animation)
+
+    adapter = AnimationPlayerAdapter(player, canvas)
+    factory = SettingFactory(settings_frame)
+
+    new_button['command'] = new(chooser_frame, animation, adapter, factory)
+    timeline_scale['command'] = lambda value: adapter.show_position_of(
+            float(value), normalized=True)
+    play_button['command'] = adapter.play
 
     root.mainloop()
 
@@ -73,9 +131,9 @@ def interaction(new_button, play_button, timeline_scale,
         lambda update: canvas.after(17, update),
         lambda pos: canvas.moveto(drawable, *pos),
     )
-    animation_control = AnimationControl(manager)
+    animation_control = TEMP(manager)
 
     new_button['command'] = animation_control.new
     play_button['command'] = animation_control.play
     timeline_scale['command'] = lambda value: \
-        animation_control.uniform_show(float(value))
+        animation_control.show(float(value), normalize=True)
